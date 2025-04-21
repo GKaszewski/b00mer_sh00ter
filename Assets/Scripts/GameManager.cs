@@ -1,5 +1,7 @@
 ﻿using System;
+using KBCore.Refs;
 using Shooter.Data;
+using Shooter.Inventory;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,8 +9,11 @@ namespace Shooter {
     public class GameManager : MonoBehaviour {
         public static GameManager Instance { get; private set; }
         
-        public CharacterAttributes playerAttributes;
-        public Inventory.Inventory playerInventory;
+        [Scene] public CharacterAttributes playerAttributes;
+        [Scene] public InventorySystem playerInventorySystem;
+        public GameDifficulty gameDifficulty;
+
+        public event Action<GameDifficulty> OnDifficultyChange;
 
         private void Awake() {
             if (Instance == null) {
@@ -17,6 +22,9 @@ namespace Shooter {
                 Destroy(gameObject);
                 return;
             }
+            
+            OnDifficultyChange?.Invoke(gameDifficulty);
+            Debug.Log($"Changed difficulty to {gameDifficulty}");
         }
 
         public void RestartGame() {

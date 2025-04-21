@@ -6,16 +6,16 @@ namespace Shooter.Weapons {
         [SerializeField] private Transform projectileSpawnPoint;
         [SerializeField] private float projectileSpeed = 10f;
 
-        public void FireProjectile(float damage) {
+        public void FireProjectile(int damage) {
             var projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
             
             projectile.transform.rotation = Quaternion.identity;
             projectile.transform.LookAt(projectileSpawnPoint.position + projectileSpawnPoint.forward);
             
-            var rb = projectile.GetComponent<Rigidbody>();
-            rb.linearVelocity = projectileSpawnPoint.forward * projectileSpeed;
+            var projectileComponent = projectile.GetComponent<Projectile>();
             
-            //TODO: Pass damage to projectile
+            projectileComponent.Damage = damage;
+            projectileComponent.Speed = projectileSpeed;
         }
     }
 }

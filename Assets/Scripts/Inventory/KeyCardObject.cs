@@ -7,7 +7,8 @@ namespace Shooter.Inventory {
         public KeyCard KeyCard => keyCard;
         
         public void OnPickUp(Inventory inventory) {
-            GameManager.Instance.playerInventory.AddKeyCard(keyCard);
+            GameManager.Instance.playerInventorySystem.Inventory.AddKeyCard(keyCard);
+            Destroy(gameObject);
         }
     }
 }
