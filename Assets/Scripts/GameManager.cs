@@ -9,9 +9,11 @@ namespace Shooter {
     public class GameManager : MonoBehaviour {
         public static GameManager Instance { get; private set; }
         
-        [Scene] public CharacterAttributes playerAttributes;
+        public CharacterAttributes playerAttributes;
         [Scene] public InventorySystem playerInventorySystem;
         public GameDifficulty gameDifficulty;
+        [Scene] public DecalSpawner decalSpawner;
+
 
         public event Action<GameDifficulty> OnDifficultyChange;
 
@@ -24,7 +26,6 @@ namespace Shooter {
             }
             
             OnDifficultyChange?.Invoke(gameDifficulty);
-            Debug.Log($"Changed difficulty to {gameDifficulty}");
         }
 
         public void RestartGame() {

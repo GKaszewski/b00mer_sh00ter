@@ -1,7 +1,7 @@
 using System.Collections;
 using KBCore.Refs;
 using Shooter.Data;
-using Shooter.Weapons.Interfaces;
+using Shooter.Interfaces;
 using UnityEngine;
 
 namespace Shooter
@@ -9,6 +9,7 @@ namespace Shooter
     public class ExplosionBarrel : MonoBehaviour, IDamageInflector, IExplodable, IDeathBehavior
     {
         private Collider[] _results = new Collider[10];
+        [Self, SerializeField] private Collider _collider;
         [Self, SerializeField] private Health.Health _health;
         [Self, SerializeField] private CharacterAttributes attributes;
         [SerializeField] private GameObject explosionFXPrefab;
@@ -35,16 +36,16 @@ namespace Shooter
 
         public void Explode()
         {
+            _collider.enabled = false;
             var fx = Instantiate(explosionFXPrefab, transform.position, Quaternion.identity);
             Destroy(fx, 10f);
             
-            Physics.OverlapSphereNonAlloc(transform.position, explosionRadius, _results);
-            foreach (var c in _results)
+            var size = Physics.OverlapSphereNonAlloc(transform.position, explosionRadius, _results);
+            for (var i = 0; i < size; i++)
             {
+                var c = _results[i];
                 if (!c) continue;
-                
-                var health = c.GetComponent<Health.Health>();
-                if (health && health.gameObject && _health != health)
+                if (c.TryGetComponent<Health.Health>(out var health) && health != _health)
                 {
                     health.TakeDamage(Damage);
                 }
@@ -53,8 +54,9 @@ namespace Shooter
             StartCoroutine(DeferDestroy());
         }
 
-        public void Die()
+        public async void Die()
         {
+            await Awaitable.NextFrameAsync();
             Explode();
         }
 

@@ -1,4 +1,4 @@
-﻿using Shooter.Weapons.Interfaces;
+﻿using Shooter.Interfaces;
 using UnityEngine;
 
 namespace Shooter.Inventory {

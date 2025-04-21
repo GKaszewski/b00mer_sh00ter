@@ -1,5 +1,5 @@
 ﻿using KBCore.Refs;
-using Shooter.Weapons.Interfaces;
+using Shooter.Interfaces;
 using UnityEngine;
 
 namespace Shooter.Weapons {

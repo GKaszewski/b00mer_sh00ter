@@ -1,4 +1,4 @@
-﻿namespace Shooter.Weapons.Interfaces {
+﻿namespace Shooter.Interfaces {
     public interface IWeapon {
         void Fire();
     }

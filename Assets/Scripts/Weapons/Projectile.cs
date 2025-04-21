@@ -1,6 +1,5 @@
-using System;
 using KBCore.Refs;
-using Shooter.Weapons.Interfaces;
+using Shooter.Interfaces;
 using UnityEngine;
 
 namespace Shooter.Weapons
@@ -24,23 +23,25 @@ namespace Shooter.Weapons
 
         private void OnCollisionEnter(Collision other)
         {
-            other.gameObject.TryGetComponent<Health.Health>(out var health);
-            if (health)
+            if (other.gameObject.TryGetComponent<Health.Health>(out var health))
             {
                 ApplyDamage(health);
             }
-
+            
+            var targetRotation = Quaternion.LookRotation(other.contacts[0].normal);
+            GameManager.Instance.decalSpawner.SpawnDecal(transform.position, targetRotation);
             Destroy(gameObject);
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            other.gameObject.TryGetComponent<Health.Health>(out var health);
-            if (health)
+            if (other.gameObject.TryGetComponent<Health.Health>(out var health))
             {
                 ApplyDamage(health);
             }
-
+            
+            var targetRotation = Quaternion.LookRotation(other.transform.forward);
+            GameManager.Instance.decalSpawner.SpawnDecal(transform.position, targetRotation);
             Destroy(gameObject);
         }
 

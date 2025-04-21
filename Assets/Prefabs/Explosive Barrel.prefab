@@ -71,6 +71,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecc108ef84274613a4a6dfcd4860de4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collider: {fileID: 6883281314771709376}
+  _health: {fileID: 4771659010997358652}
   attributes: {fileID: 1083452338112612591}
   explosionFXPrefab: {fileID: 110790, guid: 0f75f6db4a318f54382e0c98b2226db8, type: 3}
   explosionRadius: 25

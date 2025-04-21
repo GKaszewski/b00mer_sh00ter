@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Shooter.Weapons;
+using Shooter.Weapons.Data;
 using UnityEngine;
 
 namespace Shooter.Inventory {
@@ -60,6 +61,11 @@ namespace Shooter.Inventory {
 
         public Weapon GetWeapon(int index) {
             return weapons[index];
+        }
+
+        public Weapon GetWeaponOfStats(WeaponStats stats)
+        {
+            return weapons.Find(weapon => weapon.Stats == stats);
         }
     }
 }
