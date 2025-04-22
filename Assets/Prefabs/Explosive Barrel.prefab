@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8639451421072951774}
   - component: {fileID: 4771659010997358652}
   - component: {fileID: 1083452338112612591}
+  - component: {fileID: 4906684121185476379}
   m_Layer: 0
   m_Name: Explosive Barrel
   m_TagString: Untagged
@@ -73,7 +74,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 6883281314771709376}
   _health: {fileID: 4771659010997358652}
-  attributes: {fileID: 1083452338112612591}
   explosionFXPrefab: {fileID: 110790, guid: 0f75f6db4a318f54382e0c98b2226db8, type: 3}
   explosionRadius: 25
   <Damage>k__BackingField: 10
@@ -112,6 +112,21 @@ MonoBehaviour:
   _kills: 0
   _deaths: 0
   _isInvincible: 0
+--- !u!114 &4906684121185476379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435350124288278923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efc38da017c941b6a5772a9d8a9f24b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterAttributes: {fileID: 1083452338112612591}
+  deathBehavior:
+    _implementer: {fileID: 8639451421072951774}
 --- !u!1001 &4222981351162472669
 PrefabInstance:
   m_ObjectHideFlags: 0

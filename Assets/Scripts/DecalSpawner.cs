@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 namespace Shooter
 {
@@ -7,7 +6,6 @@ namespace Shooter
     {
         [SerializeField] private GameObject decalPrefab;
         [SerializeField] private float decalLifetime = 5f;
-        [SerializeField] private float decalScale = 1f;
         
         public void SpawnDecal(Vector3 position, Quaternion rotation)
         {

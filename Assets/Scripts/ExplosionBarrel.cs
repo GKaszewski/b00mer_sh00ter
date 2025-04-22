@@ -11,29 +11,10 @@ namespace Shooter
         private Collider[] _results = new Collider[10];
         [Self, SerializeField] private Collider _collider;
         [Self, SerializeField] private Health.Health _health;
-        [Self, SerializeField] private CharacterAttributes attributes;
         [SerializeField] private GameObject explosionFXPrefab;
         [SerializeField] private float explosionRadius = 5f;
         [field: SerializeField] public int Damage { get; set; }
-
-        private void OnEnable()
-        {
-            attributes.OnHealthChanged += OnHealthChanged;
-        }
-
-        private void OnDisable()
-        {
-            attributes.OnHealthChanged -= OnHealthChanged;
-        }
-
-        private void OnHealthChanged(int newHealth)
-        {
-            if (newHealth <= 0)
-            {
-                Die();
-            }
-        }
-
+        
         public void Explode()
         {
             _collider.enabled = false;
